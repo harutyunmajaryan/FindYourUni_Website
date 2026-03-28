@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindYourUni — Login</title>
+    <link href="login.css" rel="stylesheet" />
+    <link rel="icon" type="images/png" href="websiteimages/logo.png" />
+    <script src="login.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <img src="/websiteimages/logo.png" alt="image" class="logo" />
+      <h2>FindYourUni</h2>
+
+      <nav class="navbar">
+        <ul>
+          <li id="get-started-button">
+            <a href="login.html">Log in</a>
+          </li>
+          <li><a href="Index.html">Home</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="SurveyPage.html">Survey</a></li>
+          <li><a href="Shortlist.html">Your Shortlist</a></li>
+        </ul>
+      </nav>
+      <img src="websiteimages/NavbarSeparator.png" id="NavbarSeparator" />
+    </header>
+
+    <div class="page-wrapper">
+      <div class="brand-side">
+        <div class="brand-logo">FindYourUni</div>
+        <div class="brand-divider"></div>
+        <h1 class="brand-headline">
+          Find your<br /><em>perfect</em><br />university
+        </h1>
+        <p class="brand-tagline">Stop searching. Start matching.</p>
+      </div>
+
+      <div class="login_container">
+        <p class="card-eyebrow">Welcome back</p>
+        <h2 class="welcome">Sign <span>in</span></h2>
+
+        <form id="login_form">
+          <div class="input-group">
+            <div class="input-wrap">
+              <label class="input-label" for="email">Email address</label>
+              <input
+                type="email"
+                class="user"
+                id="email"
+                placeholder="you@example.com"
+                required
+              />
+              <p id="email_error" class="error-message"></p>
+            </div>
+
+            <div class="input-wrap">
+              <label class="input-label" for="password">Password</label>
+              <input
+                type="password"
+                class="psw"
+                id="password"
+                placeholder="••••••••"
+                required
+              />
+              <p id="password_error" class="error-message"></p>
+            </div>
+          </div>
+          <button type="submit" class="Login_button">Continue</button>
+        </form>
+
+        <p class="signup-link">
+          No account yet? <a href="register.html"> Create one</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
