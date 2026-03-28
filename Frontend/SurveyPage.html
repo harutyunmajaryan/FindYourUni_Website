@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="SurveyPage.css" />
+    <link rel="icon" type="images/png" href="websiteimages/logo.png" />
+    <script src="SurveyBackend.js" defer></script>
+    <script src="SurveyFilters.js" defer></script>
+    <title>Main Survey</title>
+  </head>
+  <body>
+    <header>
+      <img src="/websiteimages/logo.png" alt="image" class="logo" />
+      <h2>FindYourUni</h2>
+
+      <nav class="navbar">
+        <ul>
+          <li id="get-started-button">
+            <a href="login.html">Log in</a>
+          </li>
+          <li><a href="Index.html">Home</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="SurveyPage.html">Survey</a></li>
+          <li><a href="Shortlist.html">Your Shortlist</a></li>
+        </ul>
+      </nav>
+      <img src="websiteimages/NavbarSeparator.png" id="NavbarSeparator" />
+    </header>
+
+    <main>
+      <div id="main-container">
+        <div id="Sidebar">
+          <h3>Rate Your Priorities</h3>
+          <p id="side-text">
+            Adjust each preference from <br />1-10 to help us find your
+            closest-matching courses!
+            <br />
+            <br />
+            Then, apply filters to narrow down your applicable courses.
+          </p>
+          <div id="progress-bar">
+            <div id="progress-number">
+              <p>Progress:</p>
+              <p><span id="progress-num">0</span>/4</p>
+            </div>
+            <div id="progress-bar-track">
+              <div id="progress-bar-fill"></div>
+            </div>
+          </div>
+          <div id="btn-wrapper">Generate Matches</div>
+        </div>
+
+        <div id="Main-Section">
+          <div id="Preferences-Section">
+            <div class="ratings" id="Graduate Outcomes">
+              <div class="ratings-top">
+                <div class="ratings-num">01</div>
+                <h4 class="ratings-title">Graduate Outcomes</h4>
+              </div>
+              <div class="ratings-bottom">
+                <p class="ratings-desc">
+                  Average earnings of graduates after 5 years
+                </p>
+                <div class="score">
+                  <span class="big" id="outcomesNum">5</span>/10
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value="5"
+                class="slider"
+                id="outcomesSlider"
+              />
+              <div class="ratings-importance">
+                <p class="n-important">No Importance</p>
+                <p class="v-important">Very Important</p>
+              </div>
+            </div>
+
+            <div class="ratings" id="Student Satisfaction">
+              <div class="ratings-top">
+                <div class="ratings-num">02</div>
+                <h4 class="ratings-title">Student Satisfaction</h4>
+              </div>
+              <div class="ratings-bottom">
+                <p class="ratings-desc">
+                  Averaged results from National Student Survey questions
+                  assessing course satisfaction among students
+                </p>
+                <div class="score">
+                  <span class="big" id="satisfactionNum">5</span>/10
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value="5"
+                class="slider"
+                id="satisfactionSlider"
+              />
+              <div class="ratings-importance">
+                <p class="n-important">No Importance</p>
+                <p class="v-important">Very Important</p>
+              </div>
+            </div>
+
+            <div class="ratings" id="Research Influence">
+              <div class="ratings-top">
+                <div class="ratings-num">03</div>
+                <h4 class="ratings-title">Research Influence</h4>
+              </div>
+              <div class="ratings-bottom">
+                <p class="ratings-desc">
+                  Citations count for each course from ______
+                </p>
+                <div class="score">
+                  <span class="big" id="researchNum">5</span>/10
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value="5"
+                class="slider"
+                id="researchSlider"
+              />
+              <div class="ratings-importance">
+                <p class="n-important">No Importance</p>
+                <p class="v-important">Very Important</p>
+              </div>
+            </div>
+
+            <div class="ratings" id="Cost of Living">
+              <div class="ratings-top">
+                <div class="ratings-num">04</div>
+                <h4 class="ratings-title">Cost of Living</h4>
+              </div>
+              <div class="ratings-bottom">
+                <p class="ratings-desc">
+                  Averaged cost of accommodation and living expenses for given
+                  postcode area
+                </p>
+                <div class="score">
+                  <span class="big" id="costNum">5</span>/10
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value="5"
+                class="slider"
+                id="costSlider"
+              />
+              <div class="ratings-importance">
+                <p class="n-important">No Importance</p>
+                <p class="v-important">Very Important</p>
+              </div>
+            </div>
+          </div>
+          <div id="filters">
+            <div class="multi-select-container">
+              <label>Course Category:</label>
+              <div class="multi-select-wrapper">
+                <div class="selected-tags" id="category-tags"></div>
+                <input
+                  type="text"
+                  class="multi-select-input"
+                  id="course_category"
+                  placeholder="Type to search course groups..."
+                />
+                <div class="multi-select-dropdown" id="category-dropdown"></div>
+              </div>
+            </div>
+            <div class="multi-select-container">
+              <label>Course Name:</label>
+              <div class="multi-select-wrapper">
+                <div class="selected-tags" id="course-tags"></div>
+                <input
+                  type="text"
+                  class="multi-select-input"
+                  id="course"
+                  placeholder="Search for courses, click enter..."
+                />
+                <div class="multi-select-dropdown" id="course-dropdown"></div>
+              </div>
+            </div>
+            <div class="multi-select-container">
+              <label>Course Location:</label>
+              <div class="multi-select-wrapper">
+                <div class="selected-tags" id="location-tags"></div>
+                <input
+                  type="text"
+                  class="multi-select-input"
+                  id="course_location"
+                  placeholder="Type to search course country/region/city..."
+                />
+                <div class="multi-select-dropdown" id="location-dropdown"></div>
+              </div>
+            </div>
+            <div class="multi-select-container">
+              <label>University:</label>
+              <div class="multi-select-wrapper">
+                <div class="selected-tags" id="university-tags"></div>
+                <input
+                  type="text"
+                  class="multi-select-input"
+                  id="university"
+                  placeholder="Type to search universities..."
+                />
+                <div
+                  class="multi-select-dropdown"
+                  id="university-dropdown"
+                ></div>
+              </div>
+            </div>
+            <div class="multi-select-container">
+              <label>Degree Type:</label>
+              <div class="multi-select-wrapper">
+                <div class="selected-tags" id="degree-tags"></div>
+                <input
+                  type="text"
+                  class="multi-select-input"
+                  id="degree_type"
+                  placeholder="Type to search course groups..."
+                />
+                <div class="multi-select-dropdown" id="degree-dropdown"></div>
+              </div>
+            </div>
+            <div class="multi-select-container" id="grades">
+              <label>Average Accepted Grade:</label>
+              <div id="grades-content">
+                <div id="checkboxes">
+                  <p class="checkbox-container">
+                    A-Levels
+                    <input
+                      type="radio"
+                      name="grade-type"
+                      class="checkbox"
+                      id="checkbox1"
+                      value="A-Levels"
+                    />
+                  </p>
+                  <p class="checkbox-container">
+                    IB
+                    <input
+                      type="radio"
+                      name="grade-type"
+                      class="checkbox"
+                      id="checkbox2"
+                      value="IB"
+                    />
+                  </p>
+                </div>
+                <div class="multi-select-wrapper">
+                  <div class="selected-tags" id="grade-tags"></div>
+                  <input
+                    type="text"
+                    class="multi-select-input"
+                    id="grade"
+                    placeholder="Select grades..."
+                  />
+                  <div class="multi-select-dropdown" id="grade-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id=""></div>
+    </main>
+
+    <footer>
+      <div id="footer-bottom">
+        <h3>FindYourUni</h3>
+        <p>© 2025 FindYourUni. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
