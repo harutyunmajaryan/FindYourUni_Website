@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Results.css" />
+    <link rel="stylesheet" href="Shortlist.css" />
+    <link rel="icon" type="images/png" href="websiteimages/logo.png" />
+    <title>Shortlist</title>
+  </head>
+  <body>
+    <header>
+      <img src="/websiteimages/logo.png" alt="image" class="logo" />
+      <h2 class="headerFindYourUni">FindYourUni</h2>
+      <nav class="navbar">
+        <ul>
+          <li><a href="Index.html">Home</a></li>
+          <li><a href="Shortlist.html">Your Shortlist</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="SurveyPage.html">Survey</a></li>
+          <li id="get-started-button"><a href="login.html">Log in</a></li>
+        </ul>
+      </nav>
+
+      <img src="websiteimages/NavbarSeparator.png" id="NavbarSeparator" />
+    </header>
+
+    <h1 class="shortlist-title">My Shortlist</h1>
+
+    <div class="whole-page">
+      <div class="right-panel" id="shortlist-container"></div>
+    </div>
+
+    <script>
+      const container = document.getElementById("shortlist-container");
+
+      async function loadShortlist() {
+        try {
+          const response = await fetch("/shortlist/list", {
+            credentials: "include",
+          });
+
+          if (response.status === 401) {
+            container.innerHTML =
+              "<p style='margin-left:30px;'>Please log in to view your shortlist.</p>";
+            return;
+          }
+
+          const shortlist = await response.json();
+
+          container.innerHTML = "";
+
+          if (!Array.isArray(shortlist) || shortlist.length === 0) {
+            container.innerHTML =
+              "<p style='margin-left:30px;'>No courses saved yet.</p>";
+            return;
+          }
+
+          shortlist.forEach((course, index) => {
+            const card = document.createElement("div");
+            card.className = "course-card";
+
+            card.innerHTML = `
+                        <div class="course-rank"><h2>${String(index + 1).padStart(2, "0")}</h2></div>
+                        <div class="course-name-uni">
+                            <div class="course-name">${course.course_name || "Unknown Course"}</div>
+                            <div class="course-uni">${course.university_name || "Unknown University"}</div>
+                        </div>
+                        <div class="bar-shortlist">
+                            <div class="match-bar">
+                                <div class="match-bar-fill" style="width: ${course.score || 0}%"></div>
+                            </div>
+                            <div class="location-shortlist">
+                                <div class="location-all">
+                                    <div class="course-location">
+                                        <span class="course-city">${course.city || "Unknown"}</span>,
+                                        <span class="course-region">${course.region || "Unknown"}</span>
+                                    </div>
+                                </div>
+				<button class="shortlist-btn remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            <span class="big-score"><span class="big-score-num">${course.score || 0}</span>%</span> Match
+                        </div>
+                    `;
+
+            const removeBtn = card.querySelector(".remove-btn");
+
+            removeBtn.addEventListener("click", async () => {
+              try {
+                const response = await fetch("/shortlist/remove", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+                  body: JSON.stringify({
+                    course_name: course.course_name,
+                    university_name: course.university_name,
+                  }),
+                });
+
+                const result = await response.json();
+
+                if (response.status === 401) {
+                  alert("Please log in.");
+                  window.location.href = "login.html";
+                  return;
+                }
+
+                if (response.ok && result.status === "success") {
+                  loadShortlist();
+                } else {
+                  alert(result.message || "Failed to remove.");
+                }
+              } catch (error) {
+                console.error("Error removing item:", error);
+                alert("Error removing item.");
+              }
+            });
+
+            container.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error loading shortlist:", error);
+          container.innerHTML =
+            "<p style='margin-left:30px;'>Could not load shortlist.</p>";
+        }
+      }
+
+      loadShortlist();
+    </script>
+  </body>
+</html>
