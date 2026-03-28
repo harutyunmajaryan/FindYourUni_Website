@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "About.css">
+    <link rel="icon" type="images/png" href="websiteimages/logo.png">
+    <title>About FindYourUni</title>
+</head>
+<body>
+     <header>
+      <img src="/websiteimages/logo.png" alt="image" class="logo" />
+      <h2>FindYourUni</h2>
+
+      <nav class="navbar">
+        <ul>
+          <li id="get-started-button">
+            <a href="login.html">Log in</a>
+          </li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="SurveyPage.html">Survey</a></li>
+          <li><a href="Shortlist.html">Your Shortlist</a></li>
+          <li><a href = "Index.html">Home</a></li>
+        </ul>
+      </nav>
+      <img src="websiteimages/NavbarSeparator.png" id="NavbarSeparator" />
+    </header>
+
+
+<h1>About FindYourUni</h1>
+<div class="about-page">
+<p>FindYourUni is a university matchmaking website designed to help students find universities that best suit their needs based on their personal preferences.</p>
+
+<p>Choosing a university can be overwhelming. There are a ton of rankings based on countless metrics that can lead to a seemingly never-ending search. We aim to simplify the process and save you time by narrowing your list of universities down using what matters most to you!</p>
+
+<h2>How our algorithm works</h2>
+<div style="height: 30px;"></div>
+<div class = "paragraph2">
+<p>We use a K-Nearest Neighbour algorithm to compare your grades and preferences against a dataset of university information to give you personalized results.</p>
+</div>
+
+<div class = "about-page-2">
+<h2>How To Get Started:</h2>
+<ul>
+      <li><h3>Enter Your Grades</h3></li>
+      <p class = "p3">Enter your grades (A levels or IB)</p>
+
+      <li><h3>Choose Your Course</h3></li>
+      <p class = "p3">Enter the course you are interested in applying for.</p>
+
+      <li><h3>Set Your Preferences</h3></li>
+      <p class = "p3" >Choose factors such as student satisfaction, teaching quality, and employability, then use the sliders to indicate how important each factor is to you.</p>
+ 
+     <li><h3>Get Your Results!</h3></li>
+      <p class = "p3">Receive a ranked list of personalized university recommendations tailored to your needs.</p>
+</div>
+<div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+    <div style="height: 30px;"></div>
+    <details class="faq-box">
+        <summary>How is my data used?</summary>
+        <div class="faq-content">
+            <p>We do not share your personal information. Grades and preferences are used only to generate university recommendations.</p>
+        </div>
+    </details>
+
+    <details class="faq-box">
+        <summary>What grades can I enter?</summary>
+        <div class="faq-content">
+            <p>Our website supports A-Levels and IB to help us find universities with similar grade requirements by converting to UCAS tariff points. If you like a particular course, 
+            make sure to check the university website to confirm the grade requirements are suitable.</p>
+        </div>
+    </details>
+
+    <details class="faq-box">
+        <summary>Do I need to make an account?</summary>
+        <div class="faq-content">
+            <p>Our tool can still be used without logging in, but you will not be able to save courses to your shortlist without an account. </p>
+        </div>
+    </details>
+    <details class="faq-box">
+        <summary>Are my results guaranteed?</summary>
+        <div class="faq-content">
+            <p>No. FindYourUni provides recommendations based on the information you provide. The results are only a guide to help narrow down your search and 
+            is not a definitive ranking. We recommend conducting further research on each university. If you want to access the websites to the courses, they 
+            can be found when you expand on a university in the table. </p>
+        </div>
+    </details>
+</div>
+<div class = "about-page-2">
+<h2>How do we gather our Data?</h2>
+<div style="height: 30px;"></div>
+<p>The following metrics are gathered from <a href="https://www.hesa.ac.uk/data-and-analysis"> HESA</a>'s Discover Uni Dataset :<p>
+<ul>
+<li>Student Satisfaction</li>
+<li>Graduate Outcomes</li>
+<li>Average Entry Tariff Points</li>
+</ul>
+<ul>
+<li>Cost of Living was obtained by mapping postcodes to cities and using the <a href="https://www.natwest.com/life-moments/students-and-graduates/student-living-index.html"> Natwest Student Living Index 2025</a>. From this we gave each city an affordability score</li>
+<li>Research Quality from <a href="https://2029.ref.ac.uk"> Research Excellence Framework</a>.</li>
+<li> <a href="https://www.natwest.com/life-moments/students-and-graduates/student-living-index.html"> OFS</a> was also used to differentiate between universities and other higher education providers.</li>
+</ul>
+</div>
+
+
+
+</body>
+</html>
