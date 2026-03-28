@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Results.css" />
+    <link rel="icon" type="images/png" href="websiteimages/logo.png" />
+    <script src="ResultsBackend.js" defer></script>
+    <script src="ResultsSliders.js" defer></script>
+    <script src="ResultsFilters.js" defer></script>
+    <title>Find Your University</title>
+  </head>
+  <body>
+    <header>
+      <h2 class="headerFindYourUni">FindYourUni</h2>
+      <img src="/websiteimages/logo.png" alt="image" class="logo" />
+      <nav class="navbar">
+        <ul>
+          <li><a href="Index.html">Home</a></li>
+          <li><a href="Shortlist.html">Your Shortlist</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="Survey.html">Survey</a></li>
+          <li id="get-started-button"><a href="login.html">Log in</a></li>
+        </ul>
+      </nav>
+
+      <img src="websiteimages/NavbarSeparator.png" id="NavbarSeparator" />
+    </header>
+
+    <div id="toast-container"></div>
+
+    <div class="whole-page">
+      <div class="left-panel">
+        <h2>Adjust Your Preferences:</h2>
+        <h3>Factor Scores:</h3>
+
+        <div class="slider-group">
+          <div class="slider-item">
+            <div class="slider-label">
+              <span>Student Satisfaction</span>
+              <span class="slider-value" id="satisfaction">0/10</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              id="satisfaction_input"
+              style="--val: 0%"
+              oninput="update(this, 'satisfaction')"
+            />
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-label">
+              <span>Earning Prospects</span>
+              <span class="slider-value" id="earnings">0/10</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              id="earnings_input"
+              style="--val: 0%"
+              oninput="update(this, 'earnings')"
+            />
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-label">
+              <span>Research Quality</span>
+              <span class="slider-value" id="research">0/10</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              id="research_input"
+              style="--val: 0%"
+              oninput="update(this, 'research')"
+            />
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-label">
+              <span>Cost of Living</span>
+              <span class="slider-value" id="living_cost">0/10</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              id="living_cost_input"
+              style="--val: 0%"
+              oninput="update(this, 'living_cost')"
+            />
+          </div>
+        </div>
+
+        <script>
+          function update(input, labelId) {
+            const val = input.value;
+            const pct = (val / 10) * 100;
+            input.style.setProperty("--val", pct + "%");
+            document.getElementById(labelId).textContent = val + "/10";
+          }
+        </script>
+
+        <h3 class="second-filter">Filter Options:</h3>
+        <div class="second-options">
+          <div class="multi-select-container">
+            <label>Course Category:</label>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="category-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="course_category"
+                placeholder="Type to search course groups..."
+              />
+              <div class="multi-select-dropdown" id="category-dropdown"></div>
+            </div>
+          </div>
+          <div class="multi-select-container">
+            <label>Course Name:</label>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="course-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="course"
+                placeholder="Search for courses, click enter..."
+              />
+              <div class="multi-select-dropdown" id="course-dropdown"></div>
+            </div>
+          </div>
+          <div class="multi-select-container">
+            <label>Course Location:</label>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="location-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="course_location"
+                placeholder="Type to search course country/region/city..."
+              />
+              <div class="multi-select-dropdown" id="location-dropdown"></div>
+            </div>
+          </div>
+          <div class="multi-select-container">
+            <label>University:</label>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="university-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="university"
+                placeholder="Type to search universities..."
+              />
+              <div class="multi-select-dropdown" id="university-dropdown"></div>
+            </div>
+          </div>
+          <div class="multi-select-container">
+            <label>Degree Type:</label>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="degree-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="degree_type"
+                placeholder="Type to search course groups..."
+              />
+              <div class="multi-select-dropdown" id="degree-dropdown"></div>
+            </div>
+          </div>
+          <div class="multi-select-container">
+            <label>Average Accepted Grade:</label>
+            <div id="checkboxes">
+              <p class="checkbox-container">
+                A-Levels
+                <input
+                  type="radio"
+                  name="grade-type"
+                  class="checkbox"
+                  id="checkbox1"
+                  value="A-Levels"
+                />
+              </p>
+              <p class="checkbox-container">
+                IB
+                <input
+                  type="radio"
+                  name="grade-type"
+                  class="checkbox"
+                  id="checkbox2"
+                  value="IB"
+                />
+              </p>
+            </div>
+            <div class="multi-select-wrapper">
+              <div class="selected-tags" id="grade-tags"></div>
+              <input
+                type="text"
+                class="multi-select-input"
+                id="grade"
+                placeholder="Select grades..."
+              />
+              <div class="multi-select-dropdown" id="grade-dropdown"></div>
+            </div>
+          </div>
+          <div class="results-count-container">
+            <label for="display-count">Show results:</label>
+            <input
+              type="number"
+              id="display-count"
+              class="results-count-input"
+              min="10"
+              max="100"
+              value="10"
+            />
+          </div>
+        </div>
+        <form class="main_form">
+          <button class="submit-btn" type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="right-panel">
+        <template id="course-card-template">
+          <div class="course-card">
+            <div class="course-rank"><h2></h2></div>
+            <div class="course-name-uni">
+              <div class="course-name"></div>
+              <div class="course-uni"></div>
+            </div>
+            <div class="bar-shortlist">
+              <div class="match-bar">
+                <div class="match-bar-fill"></div>
+              </div>
+              <div class="location-shortlist">
+                <div class="location-all">
+                  <img
+                    src="websiteimages/LocationPin.png"
+                    class="location-pin"
+                  />
+                  <div class="course-location">
+                    <span class="course-city"></span>,
+                    <span class="course-region"></span>
+                  </div>
+                </div>
+                <button class="shortlist-btn"><p>Save to Shortlist</p></button>
+              </div>
+            </div>
+            <div class="match-score">
+              <span class="big-score"
+                ><span class="big-score-num"></span>%</span
+              >
+              Match
+            </div>
+            <div class="extend-btn" id="extend-btn">
+              <img src="websiteimages/ExtendCard.png" class="extend-img" />
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </body>
+</html>
