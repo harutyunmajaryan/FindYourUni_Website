@@ -36,7 +36,7 @@ Students enter their **IB or A-Level grades**, preferred **location**, and what 
 | Frontend | HTML, CSS, JavaScript |
 | Backend | Python |
 | Algorithm | K-Nearest Neighbours (KNN) |
-| Data | <!-- e.g. CSV / SQLite / JSON --> |
+| Data | CSV |
 
 ## 🧠 How It Works
 
