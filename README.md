@@ -33,8 +33,8 @@ Students enter their **IB or A-Level grades**, preferred **location**, and what 
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | HTML, CSS, JavaScript |
-| Backend | Python |
+| Frontend | HTML, CSS |
+| Backend | Python, JavaScript |
 | Algorithm | K-Nearest Neighbours (KNN) |
 | Data | CSV |
 
